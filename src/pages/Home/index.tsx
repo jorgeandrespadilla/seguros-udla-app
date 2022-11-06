@@ -11,9 +11,11 @@ function Home() {
     }
 
     return (
-        <div>
+        <div className='Home__container'>
             <h1>Inicio</h1>
-            <Button text="Cerrar Sesión" onClick={handleLogout} />
+            <div className='Home__actions'>
+                <Button styleType='secondary' text="Cerrar Sesión" onClick={handleLogout} />
+            </div>
         </div>
     );
 }

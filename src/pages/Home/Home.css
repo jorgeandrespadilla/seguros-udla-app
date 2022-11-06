@@ -1,0 +1,21 @@
+.Home__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+.Home__container h1 {
+    margin: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.Home__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

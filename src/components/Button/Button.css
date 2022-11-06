@@ -1,10 +1,6 @@
-button {
-    margin: 4px 2px;
+.Button {
     padding: 1rem 2rem;
     width: 100%;
-    background-color: var(--primary-color);
-    border: none;
-    color: white;
     text-align: center;
     display: inline-block;
     font-size: 16px;
@@ -12,7 +8,24 @@ button {
     border-radius: 1rem;
 }
 
-button:hover {
+.Button--primary {
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.Button--primary:hover {
     cursor: pointer;
-    filter: brightness(1.2);
+    filter: brightness(1.1);
+}
+
+.Button--secondary {
+    border: 1px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.Button--secondary:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
 }
