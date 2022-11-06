@@ -1,8 +1,14 @@
 import './Button.css';
 
-function Button() {
+type ButtonProps = {
+    text: string;
+    type?: 'button' | 'submit';
+    onClick?: () => void;
+}
+
+function Button({text, type = "button", onClick = () => {}}: ButtonProps) {
     return (
-        <div>Button</div>
+        <button type={type} onClick={onClick}>{text}</button>
     );
 }
 
