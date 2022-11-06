@@ -1,0 +1,17 @@
+.Field__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.Field__label {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    margin-inline: 0.75rem;
+}
+
+.Field__input {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid rgb(67, 67, 67);
+    border-radius: 1rem;
+}
