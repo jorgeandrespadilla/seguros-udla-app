@@ -1,24 +1,43 @@
 import { useState } from 'react';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Dropdown from 'components/Dropdown';
 import Field from 'components/Field';
-import { LoginRequest } from 'types/api';
+import { LoginRequest } from 'types/request';
+import { useAuth } from 'hooks/useAuth';
+import { authenticateUser } from 'services/auth';
+import { handleAPIError } from 'utils/validation';
 import './Login.css';
 
 function Login() {
+    const { isAuthenticated, login } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [currency, setCurrency] = useState('USD');
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        let request: LoginRequest = {
-            username: email,
-            password: password,
-            currency: currency,
-        };
-        console.log(request);
+        
+        try {
+            const targetPath = location.state ? location.state.pathname : "/";
+            let request: LoginRequest = {
+                username: email,
+                password: password,
+                currency: currency,
+            };
+            const response = await authenticateUser(request);
+            login(response);
+            navigate(targetPath, { replace: true });
+        } catch (error) {
+            handleAPIError(error);
+        }
+    }
+
+    if (isAuthenticated) {
+        return <Navigate to="/" replace />;
     }
 
     return (

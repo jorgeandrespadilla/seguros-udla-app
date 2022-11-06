@@ -1,9 +1,31 @@
+import { useAuth } from 'hooks/useAuth';
+import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import Router from 'routes';
+import { getStorageUpdate, listenForStorageUpdates } from 'utils/storage';
 import './App.css';
-import Login from './pages/Login';
 
 function App() {
+    const { validateToken } = useAuth();
+
+    useEffect(() => {
+        const onUpdateCompleted = () => {
+            validateToken();
+        };
+        const removeListener = listenForStorageUpdates(onUpdateCompleted);
+        getStorageUpdate();
+        return () => {
+            removeListener();
+        };
+    }, [validateToken]);
+
     return (
-        <Login />
+        <>
+            <Router />
+            <Toaster position="top-center" toastOptions={{
+                duration: 3000,
+            }} />
+        </>
     );
 }
 
