@@ -1,6 +1,7 @@
 .Field__container {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .Field__label {

@@ -7,6 +7,9 @@ import { LoginRequest } from 'types/request';
 import { useAuth } from 'hooks/useAuth';
 import { authenticateUser } from 'services/auth';
 import { handleAPIError } from 'utils/validation';
+import leftShape from 'assets/LeftShape.svg';
+import topShape from 'assets/TopShape.svg';
+import bottomShape from 'assets/BottomShape.svg';
 import './Login.css';
 
 function Login() {
@@ -20,7 +23,7 @@ function Login() {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        
+
         try {
             const targetPath = location.state ? location.state.pathname : "/";
             let request: LoginRequest = {
@@ -41,37 +44,38 @@ function Login() {
     }
 
     return (
-        <div className="Login">
-            <div className="Login__container">
-                <h1>Inicio de Sesión</h1>
-                <div className="Login__form--container">
-                    <form onSubmit={handleSubmit} className="Login__form">
-                        <Field
-                            type='email'
-                            label='Usuario'
-                            placeholder='usuario@ejemplo.com'
-                            value={email}
-                            onChange={setEmail}
-                            required
-                        />
-                        <Field
-                            type='password'
-                            label='Contraseña'
-                            placeholder='Ingrese su contraseña'
-                            value={password}
-                            onChange={setPassword}
-                            minLength={6}
-                            required
-                        />
-                        <Dropdown label='Moneda' value={currency} onChange={setCurrency}>
-                            <option value='USD'>USD</option>
-                            <option value='EUR'>EUR</option>
-                            <option value='RMB'>RMB</option>
-                        </Dropdown>
-                        <Button type="submit" text='Iniciar Sesión' />
-                    </form>
+        <div className="Login__container">
+            <img src={leftShape} className="Login__leftShape" alt="Shape" aria-hidden='true' />
+            <img src={topShape} className="Login__topShape" alt="Shape" aria-hidden='true' />
+            <img src={bottomShape} className="Login__bottomShape" alt="Shape" aria-hidden='true' />
+            <h1>Inicio de Sesión</h1>
+            <form onSubmit={handleSubmit} className="Login__form">
+                <Field
+                    type='email'
+                    label='Usuario'
+                    placeholder='usuario@ejemplo.com'
+                    value={email}
+                    onChange={setEmail}
+                    required
+                />
+                <Field
+                    type='password'
+                    label='Contraseña'
+                    placeholder='Ingrese su contraseña'
+                    value={password}
+                    onChange={setPassword}
+                    minLength={6}
+                    required
+                />
+                <Dropdown label='Moneda' value={currency} onChange={setCurrency}>
+                    <option value='USD'>USD</option>
+                    <option value='EUR'>EUR</option>
+                    <option value='RMB'>RMB</option>
+                </Dropdown>
+                <div className="Login__actions">
+                    <Button type="submit" text='Iniciar Sesión' />
                 </div>
-            </div>
+            </form>
         </div>
     );
 }
