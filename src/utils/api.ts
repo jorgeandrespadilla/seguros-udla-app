@@ -4,7 +4,7 @@ import authToken from "./authToken";
 const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 
 const defaultConfig = {
-    baseURL: `${apiBaseUrl}`,
+    baseURL: `${apiBaseUrl}/api`,
     headers: () => ({
         'Content-Type': 'application/json',
         'Authorization': authToken.get() ? `Bearer ${authToken.get()}` : undefined
